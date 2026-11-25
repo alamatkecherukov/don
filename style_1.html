@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DON COFFEE — Specialty coffee</title>
+  <meta name="description" content="DON COFFEE — спешелти кофе, матча и десерты. 5 адресов в городе." />
+  <meta name="theme-color" content="#ffffff" />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Inter как замена SF Pro -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      /* Палитра Apple из DESIGN.md */
+      --primary: #0066cc;         /* Action Blue */
+      --primary-focus: #0071e3;
+      --ink: #1d1d1f;             /* Тёмный текст */
+      --body: #1d1d1f;
+      --body-muted: #cccccc;      /* Серый на тёмном */
+      --ink-muted: #7a7a7a;       /* Серый на светлом */
+      
+      --canvas: #ffffff;          /* Белый фон */
+      --canvas-parchment: #f5f5f7;/* Фирменный светло-серый Apple */
+      --surface-tile-1: #272729;  /* Тёмная плитка */
+      --surface-black: #000000;   /* Чёрный */
+
+      --r-sm: 8px;
+      --r-md: 11px;
+      --r-lg: 18px;
+      --r-pill: 9999px;
+
+      --font: "Inter", system-ui, -apple-system, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--canvas);
+      color: var(--body);
+      font-family: var(--font);
+      font-size: 17px;
+      font-weight: 400;
+      line-height: 1.47;
+      letter-spacing: -0.374px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ==== Навигация (тонкая, как у Apple) ==== */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+    .nav .wrap {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 22px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--ink);
+      font-weight: 600;
+      font-size: 17px;
+      letter-spacing: -0.374px;
+    }
+    .nav .brand img {
+      height: 24px;
+      width: auto;
+      border-radius: 4px;
+    }
+    .nav .menu { display: flex; gap: 24px; }
+    .nav .menu a {
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 400;
+      transition: color 0.2s;
+    }
+    .nav .menu a:hover { color: var(--primary); }
+    @media (max-width: 768px) { .nav .menu { display: none; } }
+
+    /* ==== Секции (плитки) ==== */
+    .band { padding: 80px 22px; text-align: center; }
+    .band .wrap { max-width: 980px; margin: 0 auto; }
+    
+    .band-white { background: var(--canvas); }
+    .band-parchment { background: var(--canvas-parchment); }
+    .band-dark { background: var(--surface-tile-1); color: var(--canvas); text-align: center; }
+    .band-dark .lead { color: var(--body-muted); }
+    .band-dark h2, .band-dark h3 { color: var(--canvas); }
+
+    /* ==== Типографика ==== */
+    h1, h2, h3 { font-family: var(--font); margin: 0; color: var(--ink); }
+    
+    h1 { font-size: 56px; font-weight: 600; line-height: 1.07; letter-spacing: -0.28px; margin-bottom: 24px; }
+    h2 { font-size: 40px; font-weight: 600; line-height: 1.1; letter-spacing: 0; }
+    h3 { font-size: 21px; font-weight: 600; line-height: 1.19; letter-spacing: 0.231px; margin-bottom: 8px; }
+    
+    @media (max-width: 768px) {
+      .band { padding: 48px 22px; }
+      h1 { font-size: 40px; }
+      h2 { font-size: 32px; }
+    }
+
+    p { margin: 0 auto 16px; color: var(--body); max-width: 65ch; }
+    .lead { font-size: 28px; font-weight: 400; line-height: 1.14; letter-spacing: 0.196px; margin-bottom: 32px; }
+    @media (max-width: 768px) { .lead { font-size: 21px; } }
+
+    /* ==== Кнопки (синие таблетки) ==== */
+    .btn-primary, .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 11px 22px;
+      font-size: 17px;
+      font-weight: 400;
+      text-decoration: none;
+      border-radius: var(--r-pill);
+      transition: background 0.2s, transform 0.1s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-primary:hover { background: var(--primary-focus); }
+    .btn-primary:active { transform: scale(0.95); }
+    
+    .btn-secondary { background: transparent; color: var(--primary); border: 1px solid var(--primary); }
+    .btn-secondary:hover { background: rgba(0, 102, 204, 0.05); }
+    .btn-secondary:active { transform: scale(0.95); }
+
+    /* ==== Герой (текст по центру, фото снизу) ==== */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .hero .copy { max-width: 800px; margin-bottom: 48px; }
+    .hero .photo {
+      width: 100%;
+      max-width: 980px;
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      aspect-ratio: 16 / 9;
+      background: var(--canvas-parchment);
+      /* Единственная тень в системе — под фото продукта */
+      box-shadow: rgba(0, 0, 0, 0.22) 3px 5px 30px 0;
+    }
+    .hero .photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .hero .cta-row { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+    /* ==== Меню (карточки) ==== */
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      margin-top: 48px;
+      text-align: left;
+    }
+    @media (min-width: 768px) {
+      .card-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .card {
+      background: var(--canvas);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .band-parchment .card {
+      background: var(--canvas);
+    }
+    
+    .card .thumb {
+      aspect-ratio: 4 / 3;
+      background: var(--canvas-parchment);
+    }
+    .card .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .card .content { padding: 32px; }
+    .card .desc { font-size: 17px; color: var(--ink-muted); margin-bottom: 0; }
+
+    /* ==== Адреса (строгий список) ==== */
+    .address-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+      margin-top: 32px;
+      text-align: left;
+      background: var(--canvas);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05); /* Легкая тень как у карточек в настройках */
+    }
+    @media (min-width: 768px) {
+      .address-list { grid-template-columns: 1fr 1fr; }
+    }
+    .address-item {
+      padding: 24px 32px;
+      font-size: 17px;
+      font-weight: 400;
+      color: var(--ink);
+      border-bottom: 1px solid var(--canvas-parchment);
+      border-right: 1px solid var(--canvas-parchment);
+      transition: background 0.2s;
+    }
+    /* Убираем лишние рамки с краев */
+    @media (min-width: 768px) {
+      .address-item:nth-child(even) { border-right: none; }
+    }
+    @media (max-width: 767px) {
+      .address-item { border-right: none; }
+    }
+    .address-item:hover {
+      background: var(--canvas-parchment);
+    }
+
+    /* ==== Блок Атмосфера (Сплит) ==== */
+    .split-layout {
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+      align-items: center;
+    }
+    @media (min-width: 1024px) {
+      .split-layout { flex-direction: row; text-align: left; }
+      .split-layout .copy { flex: 1; }
+      .split-layout .photo { 
+        flex: 1.2; 
+        aspect-ratio: 4 / 3; 
+        border-radius: var(--r-lg); 
+        overflow: hidden; 
+        background: var(--canvas-parchment);
+      }
+    }
+    .split-layout .photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* ==== Футер ==== */
+    footer {
+      background: var(--canvas-parchment);
+      color: var(--ink-muted);
+      padding: 64px 22px;
+      font-size: 12px;
+      letter-spacing: -0.12px;
+    }
+    footer .wrap {
+      max-width: 980px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr; gap: 32px;
+    }
+    @media (min-width: 768px) {
+      footer .wrap { grid-template-columns: repeat(4, 1fr); }
+    }
+    footer h4 { font-size: 14px; font-weight: 600; margin-bottom: 16px; color: var(--ink); }
+    footer ul { list-style: none; padding: 0; margin: 0; }
+    footer li { margin-bottom: 12px; }
+    footer a { color: var(--ink-muted); text-decoration: none; line-height: 2; }
+    footer a:hover { color: var(--ink); text-decoration: underline; }
+    footer .legal {
+      grid-column: 1 / -1;
+      border-top: 1px solid rgba(0,0,0,0.1);
+      padding-top: 24px;
+      margin-top: 24px;
+      color: var(--ink-muted);
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="wrap">
+      <a class="brand" href="#top">
+        <img src="logo.jpg" alt="Логотип DON COFFEE" />
+        DON COFFEE
+      </a>
+      <nav class="menu" aria-label="Основная навигация">
+        <a href="#visit">Наши адреса</a>
+        <a href="#offer">Меню</a>
+        <a href="#place">Место</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Герой (Белая плитка) -->
+    <section id="top" class="band band-white">
+      <div class="wrap hero">
+        <div class="copy">
+          <h1>DON COFFEE</h1>
+          <p class="lead">Спешелти кофе, матча и десерты.<br>Уютное место, чтобы встретиться или поработать.</p>
+          <div class="cta-row">
+            <a class="btn-primary" href="#visit">Наши адреса</a>
+            <a class="btn-secondary" href="#offer">Смотреть меню</a>
+          </div>
+        </div>
+        <div class="photo">
+          <img src="2.png" alt="Кофе с латте-артом на деревянном столе" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Адреса (Светло-серая плитка) -->
+    <section id="visit" class="band band-parchment">
+      <div class="wrap">
+        <h2 style="margin-bottom: 16px;">Наши кофейни</h2>
+        <p style="color: var(--ink-muted);">Пять адресов в городе, чтобы вы всегда были рядом с хорошим кофе.</p>
+        
+        <div class="address-list">
+          <div class="address-item">ул. Доватора, 15</div>
+          <div class="address-item">ул. Космонавтов, 1026</div>
+          <div class="address-item">ул. Ленина, 70</div>
+          <div class="address-item">ул. Умара Алиева, 10</div>
+          <div class="address-item">Первомайская, 175 (Алые Хаблы)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Меню (Белая плитка) -->
+    <section id="offer" class="band band-white">
+      <div class="wrap">
+        <h2 style="margin-bottom: 16px;">Что есть</h2>
+        <p style="color: var(--ink-muted);">Классический кофе, авторские напитки и свежая выпечка.</p>
+        
+        <div class="card-grid">
+          <article class="card">
+            <div class="thumb">
+              <img src="1.png" alt="Матча с мороженым" />
+            </div>
+            <div class="content">
+              <h3>Матча и десерты</h3>
+              <p class="desc">Матча-латте, мороженое с матчей и другие авторские напитки.</p>
+            </div>
+          </article>
+          <article class="card">
+            <div class="thumb">
+              <img src="3.png" alt="Выпечка и кофе" />
+            </div>
+            <div class="content">
+              <h3>Кофе и выпечка</h3>
+              <p class="desc">Эспрессо, американо, капучино, свежие круассаны и десерты.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Атмосфера (Тёмная плитка, как на главной Apple) -->
+    <section id="place" class="band band-dark">
+      <div class="wrap">
+        <div class="split-layout">
+          <div class="copy">
+            <h2 style="margin-bottom: 16px;">Атмосфера</h2>
+            <p class="lead" style="margin-bottom: 0;">Тёплый свет, натуральное дерево и много пространства. Здесь приятно провести время за чашкой кофе.</p>
+          </div>
+          <div class="photo">
+            <img src="4.png" alt="Интерьер кофейни с логотипом на стене" />
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div>
+        <h4>DON COFFEE</h4>
+        <ul>
+          <li><a href="https://lo.cards/registration/?hash=dkJAlt2uxYrO27NX" target="_blank" rel="noopener">Бонусная карта</a></li>
+          <li><a href="https://instagram.com/don_coffee1" rel="noopener">Instagram</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Меню</h4>
+        <ul>
+          <li><a href="#offer">Кофе</a></li>
+          <li><a href="#offer">Матча</a></li>
+          <li><a href="#offer">Выпечка</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Адреса</h4>
+        <ul>
+          <li><a href="#visit">Доватора, 15</a></li>
+          <li><a href="#visit">Космонавтов, 1026</a></li>
+          <li><a href="#visit">Ленина, 70</a></li>
+          <li><a href="#visit">Умара Алиева, 10</a></li>
+          <li><a href="#visit">Первомайская, 175</a></li>
+        </ul>
+      </div>
+      <div class="legal">
+        © DON COFFEE, 2026. Все права защищены.
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DON COFFEE — Выбор стиля</title>
+  <meta name="description" content="Выберите визуальный стиль для сайта DON COFFEE." />
+  <meta name="theme-color" content="#ffffff" />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --ink: #1d1d1f;
+      --ink-soft: #86868b;
+      --canvas: #ffffff;
+      --canvas-soft: #f5f5f7;
+      --border: #e5e5ea;
+      
+      --r-card: 16px;
+      --font: "Inter", system-ui, -apple-system, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--canvas);
+      color: var(--ink);
+      font-family: var(--font);
+      font-size: 17px;
+      line-height: 1.47;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 80px 24px;
+      width: 100%;
+      flex: 1;
+    }
+
+    /* ==== Шапка ==== */
+    .header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+    .header h1 {
+      font-size: 48px;
+      font-weight: 600;
+      letter-spacing: -1px;
+      margin: 0 0 16px;
+    }
+    .header p {
+      font-size: 21px;
+      color: var(--ink-soft);
+      margin: 0;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ==== Сетка карточек ==== */
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+    @media (min-width: 768px) {
+      .grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    /* ==== Карточка-ссылка ==== */
+    .style-card {
+      display: flex;
+      flex-direction: column;
+      background: var(--canvas-soft);
+      border-radius: var(--r-card);
+      padding: 32px;
+      text-decoration: none;
+      color: var(--ink);
+      border: 1px solid var(--border);
+      transition: all 0.3s ease;
+      height: 100%;
+    }
+    .style-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+      border-color: var(--ink-soft);
+    }
+
+    .style-card .badge {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--ink-soft);
+      margin-bottom: 16px;
+    }
+    
+    .style-card h2 {
+      font-size: 24px;
+      font-weight: 600;
+      margin: 0 0 12px;
+      letter-spacing: -0.5px;
+    }
+    
+    .style-card p {
+      font-size: 15px;
+      color: var(--ink-soft);
+      margin: 0 0 24px;
+      flex: 1;
+    }
+
+    .style-card .arrow {
+      font-size: 24px;
+      font-weight: 400;
+      color: var(--ink);
+      transition: transform 0.2s ease;
+    }
+    .style-card:hover .arrow {
+      transform: translateX(4px);
+    }
+
+    /* ==== Футер ==== */
+    footer {
+      text-align: center;
+      padding: 32px 24px;
+      font-size: 14px;
+      color: var(--ink-soft);
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>DON COFFEE</h1>
+      <p>Выберите визуальный стиль для сайта кофейни. Каждый вариант полностью готов и использует ваши фотографии.</p>
+    </header>
+
+    <div class="grid">
+      <!-- Стиль 1 -->
+      <a href="style_1.html" class="style-card">
+        <span class="badge">Стиль 1</span>
+        <h2>Минимализм</h2>
+        <p>Строгий, премиальный дизайн. Крупная типографика, много воздуха, синие акценты и тёмные контрастные блоки.</p>
+        <span class="arrow">→</span>
+      </a>
+
+      <!-- Стиль 2 -->
+      <a href="style_2.html" class="style-card">
+        <span class="badge">Стиль 2</span>
+        <h2>Тёплый уют</h2>
+        <p>Дружелюбный и мягкий. Кремовый фон, оранжевые кнопки, аккуратные карточки и атмосфера локальной кофейни.</p>
+        <span class="arrow">→</span>
+      </a>
+
+      <!-- Стиль 3 -->
+      <a href="style_3.html" class="style-card">
+        <span class="badge">Стиль 3</span>
+        <h2>Кофейная классика</h2>
+        <p>Органичный зелёный брендинг, плашки, кнопки-таблетки и глубокие фоны. Проверенный стиль для сети кофеен.</p>
+        <span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <footer>
+    © DON COFFEE, 2026. Выберите стиль, чтобы посмотреть, как выглядит сайт.
+  </footer>
+</body>
+</html>

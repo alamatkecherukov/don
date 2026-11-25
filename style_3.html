@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DON COFFEE — Specialty coffee</title>
+  <meta name="description" content="DON COFFEE — спешелти кофе, матча и десерты. 5 адресов в городе." />
+  <meta name="page-type" content="place" />
+  <meta name="site-kind" content="other" />
+  <meta name="page-kind" content="place" />
+  <meta name="theme-color" content="#f2f0eb" />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Inter как замена SoDoSans -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      /* Палитра Starbucks */
+      --starbucks-green: #006241;  /* H1, акценты */
+      --green-accent: #00754a;     /* Кнопки (CTA) */
+      --house-green: #1e3932;      /* Тёмные плашки */
+      --canvas-warm: #f2f0eb;      /* Основной фон */
+      --ceramic: #edebe9;          /* Альтернативный фон */
+      
+      --ink: rgba(0, 0, 0, 0.87);  /* Основной текст */
+      --ink-soft: rgba(0, 0, 0, 0.58); /* Вторичный текст */
+      --white: #ffffff;
+      --white-soft: rgba(255, 255, 255, 0.7);
+
+      --r-pill: 50px;              /* Кнопки */
+      --r-card: 12px;              /* Карточки */
+
+      --font: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--canvas-warm);
+      color: var(--ink);
+      font-family: var(--font);
+      font-size: 16px;
+      line-height: 1.5;
+      letter-spacing: -0.01em; /* Фирменный трекинг Starbucks */
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ==== Навигация (с мягкой тенью) ==== */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--canvas-warm);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 2px 2px rgba(0,0,0,0.06), 0 0 2px rgba(0,0,0,0.07);
+    }
+    .nav .wrap {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 16px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    @media (max-width: 768px) { .nav .wrap { padding: 16px 24px; } }
+    
+    .nav .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--ink);
+      font-weight: 600;
+      font-size: 18px;
+    }
+    .nav .brand img {
+      height: 32px;
+      width: auto;
+      border-radius: 50%;
+    }
+    .nav .menu { display: flex; gap: 24px; }
+    .nav .menu a {
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .nav .menu a:hover { color: var(--green-accent); }
+    
+    .nav .actions { display: flex; gap: 16px; align-items: center; }
+    .nav .btn-small {
+      padding: 7px 16px;
+      border-radius: var(--r-pill);
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .nav .btn-signin {
+      border: 1px solid var(--ink);
+      color: var(--ink);
+    }
+    .nav .btn-join {
+      background: #000;
+      color: #fff;
+      border: 1px solid #000;
+    }
+    .nav .btn-signin:active, .nav .btn-join:active {
+      transform: scale(0.95);
+    }
+    @media (max-width: 768px) { 
+      .nav .menu, .nav .actions { display: none; } 
+    }
+
+    /* ==== Секции ==== */
+    .band { padding: 64px 40px; }
+    .band .wrap { max-width: 1440px; margin: 0 auto; }
+    @media (max-width: 768px) { .band { padding: 40px 24px; } }
+
+    .band-white { background: var(--white); }
+    .band-dark { background: var(--house-green); color: var(--white); }
+    .band-dark .lead { color: var(--white-soft); }
+    .band-dark h2 { color: var(--white); }
+
+    /* ==== Типографика ==== */
+    h1, h2, h3 { font-family: var(--font); margin: 0; letter-spacing: -0.01em; }
+    
+    h1 { font-size: 45px; font-weight: 600; line-height: 1.2; color: var(--starbucks-green); margin-bottom: 24px; }
+    h2 { font-size: 24px; font-weight: 600; line-height: 1.5; color: var(--starbucks-green); margin-bottom: 16px; }
+    h3 { font-size: 20px; font-weight: 600; line-height: 1.2; color: var(--ink); margin-bottom: 8px; }
+    
+    @media (max-width: 768px) {
+      h1 { font-size: 32px; }
+    }
+
+    .eyebrow {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.15em; /* Фирменный разряженный текст */
+      text-transform: uppercase;
+      color: var(--starbucks-green);
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    p { margin: 0 auto 16px; color: var(--ink-soft); }
+    .lead { font-size: 19px; line-height: 1.75; color: var(--ink-soft); margin-bottom: 32px; }
+
+    /* ==== Кнопки (50px радиус) ==== */
+    .btn-primary, .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 7px 16px;
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: var(--r-pill);
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .btn-primary { background: var(--green-accent); color: var(--white); border: 1px solid var(--green-accent); }
+    .btn-primary:active { transform: scale(0.95); }
+    
+    .btn-secondary { background: transparent; color: var(--green-accent); border: 1px solid var(--green-accent); }
+    .btn-secondary:active { transform: scale(0.95); }
+
+    .btn-on-dark { background: var(--white); color: var(--green-accent); border: 1px solid var(--white); }
+    .btn-on-dark:active { transform: scale(0.95); }
+
+    /* ==== Герой (Асимметричный сплит) ==== */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      padding: 64px 40px;
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+    @media (min-width: 1024px) {
+      .hero { flex-direction: row; align-items: center; gap: 64px; padding: 80px 40px; }
+      .hero .copy { flex: 1; }
+      .hero .photo { flex: 0 0 40%; } /* Пропорция 40% фото / 60% текст */
+    }
+    @media (max-width: 768px) {
+      .hero { padding: 40px 24px; }
+    }
+
+    .hero .photo {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      border-radius: var(--r-card);
+      overflow: hidden;
+      background: var(--ceramic);
+    }
+    .hero .photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .hero .cta-row { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 32px; }
+
+    /* ==== Меню (Карточки с мягкими тенями) ==== */
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      margin-top: 32px;
+    }
+    @media (min-width: 768px) {
+      .card-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 1024px) {
+      .card-grid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: var(--r-card);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 0 0.5px rgba(0,0,0,0.14), 0 1px 1px rgba(0,0,0,0.24); /* Мягкая тень */
+    }
+    
+    .card .thumb {
+      aspect-ratio: 1 / 1;
+      background: var(--ceramic);
+    }
+    .card .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .card .content { padding: 24px; }
+    .card .desc { font-size: 16px; color: var(--ink-soft); margin-bottom: 0; }
+
+    /* ==== Адреса (Список в карточках) ==== */
+    .address-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-top: 32px;
+    }
+    @media (min-width: 768px) {
+      .address-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 1024px) {
+      .address-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .address-item {
+      background: var(--white);
+      border-radius: var(--r-card);
+      padding: 24px;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--ink);
+      box-shadow: 0 0 0.5px rgba(0,0,0,0.14), 0 1px 1px rgba(0,0,0,0.24);
+    }
+    .address-item span {
+      display: block;
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-bottom: 4px;
+    }
+
+    /* ==== Сплит-блок (Атмосфера) ==== */
+    .split-layout {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      align-items: center;
+    }
+    @media (min-width: 1024px) {
+      .split-layout { flex-direction: row; text-align: left; gap: 64px; }
+      .split-layout .copy { flex: 1; }
+      .split-layout .photo { 
+        flex: 1; 
+        aspect-ratio: 4 / 3; 
+        border-radius: var(--r-card); 
+        overflow: hidden; 
+        background: var(--ceramic);
+      }
+    }
+    .split-layout .photo { width: 100%; }
+    .split-layout .photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* ==== Футер (Тёмно-зелёный) ==== */
+    footer {
+      background: var(--house-green);
+      color: var(--white);
+      padding: 64px 40px;
+      font-size: 14px;
+    }
+    @media (max-width: 768px) { footer { padding: 40px 24px; } }
+    footer .wrap {
+      max-width: 1440px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr; gap: 32px;
+    }
+    @media (min-width: 768px) {
+      footer .wrap { grid-template-columns: repeat(4, 1fr); }
+    }
+    footer h4 { font-size: 16px; font-weight: 600; margin-bottom: 16px; color: var(--white); }
+    footer ul { list-style: none; padding: 0; margin: 0; }
+    footer li { margin-bottom: 12px; }
+    footer a { color: var(--white-soft); text-decoration: none; transition: color 0.2s; }
+    footer a:hover { color: var(--white); }
+    footer .legal {
+      grid-column: 1 / -1;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 24px;
+      margin-top: 24px;
+      color: var(--white-soft);
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="wrap">
+      <a class="brand" href="#top">
+        <img src="logo.jpg" alt="Логотип DON COFFEE" />
+        DON COFFEE
+      </a>
+      <nav class="menu" aria-label="Основная навигация">
+        <a href="#visit">Наши адреса</a>
+        <a href="#offer">Меню</a>
+        <a href="#place">Место</a>
+      </nav>
+      <div class="actions">
+        <a class="btn-small btn-signin" href="#offer">Меню</a>
+        <a class="btn-small btn-join" href="#visit">Адреса</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Герой (Кремовый фон, асимметричный сплит) -->
+    <section id="top" class="hero">
+      <div class="copy">
+        <span class="eyebrow">DON COFFEE</span>
+        <h1>Спешелти кофе на каждый день</h1>
+        <p class="lead">Уютное место, чтобы встретиться с друзьями или поработать. Матча, десерты и свежая выпечка.</p>
+        <div class="cta-row">
+          <a class="btn-primary" href="#visit">Наши адреса</a>
+          <a class="btn-secondary" href="#offer">Смотреть меню</a>
+        </div>
+      </div>
+      <div class="photo">
+        <img src="2.png" alt="Кофе с латте-артом на деревянном столе" />
+      </div>
+    </section>
+
+    <!-- Адреса (Белый фон) -->
+    <section id="visit" class="band band-white">
+      <div class="wrap">
+        <h2>Наши кофейни</h2>
+        <p class="lead" style="margin-bottom: 0;">Пять адресов в городе, чтобы вы всегда были рядом с хорошим кофе.</p>
+        
+        <div class="address-grid">
+          <div class="address-item">
+            <span>Кофейня</span>
+            ул. Доватора, 15
+          </div>
+          <div class="address-item">
+            <span>Кофейня</span>
+            ул. Космонавтов, 1026
+          </div>
+          <div class="address-item">
+            <span>Кофейня</span>
+            ул. Ленина, 70
+          </div>
+          <div class="address-item">
+            <span>Кофейня</span>
+            ул. Умара Алиева, 10
+          </div>
+          <div class="address-item">
+            <span>Кофейня</span>
+            Первомайская, 175 (Алые Хаблы)
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Меню (Кремовый фон) -->
+    <section id="offer" class="band" style="background: var(--ceramic);">
+      <div class="wrap">
+        <h2>Что есть</h2>
+        <p class="lead" style="margin-bottom: 0;">Классический кофе, авторские напитки и свежая выпечка.</p>
+        
+        <div class="card-grid">
+          <article class="card">
+            <div class="thumb">
+              <img src="1.png" alt="Матча с мороженым" />
+            </div>
+            <div class="content">
+              <h3>Матча и десерты</h3>
+              <p class="desc">Матча-латте, мороженое с матчей и другие авторские напитки.</p>
+            </div>
+          </article>
+          <article class="card">
+            <div class="thumb">
+              <img src="3.png" alt="Выпечка и кофе" />
+            </div>
+            <div class="content">
+              <h3>Кофе и выпечка</h3>
+              <p class="desc">Эспрессо, американо, капучино, свежие круассаны и десерты.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Атмосфера (Тёмно-зелёная плашка) -->
+    <section id="place" class="band band-dark">
+      <div class="wrap">
+        <div class="split-layout">
+          <div class="copy">
+            <h2 style="margin-bottom: 16px;">Атмосфера</h2>
+            <p class="lead" style="margin-bottom: 0;">Тёплый свет, натуральное дерево и много пространства. Здесь приятно провести время за чашкой кофе.</p>
+          </div>
+          <div class="photo">
+            <img src="4.png" alt="Интерьер кофейни с логотипом на стене" />
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Футер (Тёмно-зелёный, House Green) -->
+  <footer>
+    <div class="wrap">
+      <div>
+        <h4>DON COFFEE</h4>
+        <ul>
+          <li><a href="https://lo.cards/registration/?hash=dkJAlt2uxYrO27NX" target="_blank" rel="noopener">Бонусная карта</a></li>
+          <li><a href="https://instagram.com/don_coffee1" rel="noopener">Instagram</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Меню</h4>
+        <ul>
+          <li><a href="#offer">Кофе</a></li>
+          <li><a href="#offer">Матча</a></li>
+          <li><a href="#offer">Выпечка</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Адреса</h4>
+        <ul>
+          <li><a href="#visit">Доватора, 15</a></li>
+          <li><a href="#visit">Космонавтов, 1026</a></li>
+          <li><a href="#visit">Ленина, 70</a></li>
+          <li><a href="#visit">Умара Алиева, 10</a></li>
+          <li><a href="#visit">Первомайская, 175</a></li>
+        </ul>
+      </div>
+      <div class="legal">
+        © DON COFFEE, 2026. Все права защищены.
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

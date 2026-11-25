@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DON COFFEE — Specialty coffee</title>
+  <meta name="description" content="DON COFFEE — спешелти кофе, матча и десерты. 5 адресов в городе." />
+  <meta name="theme-color" content="#fffefb" />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --primary: #ff4f00;      
+      --on-primary: #fffefb;
+      --ink: #201515;          
+      --body: #605d52;         
+      --canvas: #fffefb;       
+      --canvas-soft: #f8f4f0;  
+      --logo-sand: #f8e5c8;    
+      --logo-sand-dark: #d4b58a; 
+
+      --r-sm: 6px;
+      --r-md: 12px;
+      --font: "Inter", system-ui, -apple-system, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--canvas);
+      color: var(--ink);
+      font-family: var(--font);
+      font-size: 16px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ==== Навигация ==== */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--canvas);
+      border-bottom: 1px solid var(--canvas-soft);
+    }
+    .nav .wrap {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--ink);
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: -0.5px;
+    }
+    .nav .brand img {
+      height: 32px;
+      width: auto;
+      border-radius: 4px;
+    }
+    .nav .menu { display: flex; gap: 20px; }
+    .nav .menu a {
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 500;
+    }
+    .nav .menu a:hover { color: var(--primary); }
+    @media (max-width: 768px) { .nav .menu { display: none; } }
+
+    /* ==== Секции ==== */
+    .band { padding: 48px 20px; }
+    .band .wrap { max-width: 1280px; margin: 0 auto; }
+    .band-cream { background: var(--canvas-soft); }
+
+    /* ==== Типографика ==== */
+    h1, h2, h3 { font-family: var(--font); margin: 0; color: var(--ink); }
+    
+    h1 { font-size: 40px; font-weight: 500; line-height: 1.1; letter-spacing: -1px; margin-bottom: 16px; }
+    h2 { font-size: 32px; font-weight: 500; line-height: 1.1; letter-spacing: -0.5px; }
+    h3 { font-size: 20px; font-weight: 600; line-height: 1.2; letter-spacing: -0.5px; margin-bottom: 8px; }
+    
+    @media (min-width: 768px) {
+      .band { padding: 64px 24px; }
+      h1 { font-size: 56px; margin-bottom: 24px; }
+      h2 { font-size: 48px; }
+      h3 { font-size: 24px; }
+    }
+
+    .eyebrow {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+
+    p { margin: 0 0 16px; color: var(--body); }
+    .lead { font-size: 18px; line-height: 1.5; margin-bottom: 24px; }
+
+    /* ==== Кнопки ==== */
+    .btn-primary, .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 24px;
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: var(--r-md);
+      transition: background 0.2s;
+    }
+    .btn-primary { background: var(--primary); color: var(--on-primary); }
+    .btn-primary:hover { background: #e64700; }
+    .btn-secondary { background: var(--ink); color: var(--canvas); }
+
+    /* ==== Герой ==== */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+    @media (min-width: 1024px) {
+      .hero { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    }
+
+    .photo {
+      display: block;
+      width: 100%;
+      border-radius: var(--r-md);
+      overflow: hidden;
+      background: var(--canvas-soft);
+    }
+    
+    .hero .photo { aspect-ratio: 4 / 5; }
+    @media (min-width: 768px) { .hero .photo { aspect-ratio: 16 / 10; } }
+
+    .photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* ==== Сетки карточек (Меню) ==== */
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-top: 24px;
+    }
+    @media (min-width: 768px) {
+      .card-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 32px; }
+    }
+
+    .card {
+      background: var(--canvas);
+      border-radius: var(--r-md);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+    }
+    @media (min-width: 768px) { .card { padding: 24px; } }
+    
+    .card .thumb {
+      aspect-ratio: 4 / 5;
+      border-radius: var(--r-sm);
+      overflow: hidden;
+      margin-bottom: 16px;
+      background: var(--canvas-soft);
+    }
+    .card .thumb img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; display: block; }
+    .card .desc { font-size: 15px; color: var(--body); margin-bottom: 16px; }
+
+    /* ==== Адреса (Строгий минимализм без эмодзи) ==== */
+    .address-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+      margin-top: 24px;
+    }
+    @media (min-width: 768px) {
+      .address-list { grid-template-columns: 1fr 1fr; gap: 12px; }
+    }
+    .address-item {
+      display: flex;
+      align-items: center;
+      background: var(--canvas);
+      border: 1px solid transparent;
+      border-radius: var(--r-md);
+      padding: 16px 24px;
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--ink);
+      transition: border-color 0.2s, background 0.2s;
+      cursor: default;
+    }
+    .address-item:hover {
+      border-color: var(--logo-sand-dark);
+      background: var(--canvas-soft);
+    }
+    /* Оранжевая полоска-маркер слева */
+    .address-item::before {
+      content: "";
+      display: block;
+      width: 4px;
+      height: 16px;
+      background: var(--primary);
+      border-radius: 2px;
+      margin-right: 16px;
+      flex-shrink: 0;
+    }
+
+    /* ==== Блок Атмосфера ==== */
+    .split-layout {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin-top: 24px;
+    }
+    @media (min-width: 1024px) {
+      .split-layout {
+        flex-direction: row;
+        align-items: stretch;
+        gap: 48px;
+        margin-top: 32px;
+      }
+      .split-layout .copy { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+      .split-layout .photo { flex: 1.2; aspect-ratio: auto; min-height: 400px; }
+    }
+
+    /* ==== Футер ==== */
+    footer {
+      background: var(--ink);
+      color: var(--canvas);
+      padding: 48px 20px;
+    }
+    footer .wrap {
+      max-width: 1280px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr; gap: 32px;
+    }
+    @media (min-width: 768px) {
+      footer { padding: 48px 24px; }
+      footer .wrap { grid-template-columns: repeat(3, 1fr); }
+    }
+    footer h4 { font-size: 16px; font-weight: 600; margin-bottom: 16px; color: var(--canvas); }
+    footer ul { list-style: none; padding: 0; margin: 0; }
+    footer li { margin-bottom: 8px; }
+    footer a { color: var(--canvas); text-decoration: none; font-size: 15px; }
+    footer a:hover { color: var(--logo-sand); }
+    footer .legal {
+      grid-column: 1 / -1;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 24px;
+      font-size: 13px;
+      color: var(--body);
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="wrap">
+      <a class="brand" href="#top">
+        <img src="logo.jpg" alt="Логотип DON COFFEE" />
+        DON COFFEE
+      </a>
+      <nav class="menu" aria-label="Основная навигация">
+        <a href="#visit">Наши адреса</a>
+        <a href="#offer">Меню</a>
+        <a href="#place">Место</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section id="top" class="band">
+      <div class="wrap hero">
+        <div class="copy">
+          <div class="eyebrow">Specialty coffee</div>
+          <h1>DON COFFEE</h1>
+          <p class="lead">Спешелти кофе, матча и десерты. Уютное место, чтобы встретиться с друзьями или поработать.</p>
+          <div class="cta-row" style="display: flex; gap: 12px; flex-wrap: wrap;">
+            <a class="btn-primary" href="#visit">Наши адреса</a>
+            <a class="btn-secondary" href="#offer">Смотреть меню</a>
+          </div>
+        </div>
+        <div class="photo" role="img" aria-label="Латте-арт на деревянном столе">
+          <img src="2.png" alt="Кофе с латте-артом на деревянном столе" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Адреса -->
+    <section id="visit" class="band band-cream">
+      <div class="wrap">
+        <div class="eyebrow">Как найти</div>
+        <h2>Наши кофейни</h2>
+        <div class="address-list">
+          <div class="address-item">ул. Доватора, 15</div>
+          <div class="address-item">ул. Космонавтов, 1026</div>
+          <div class="address-item">ул. Ленина, 70</div>
+          <div class="address-item">ул. Умара Алиева, 10</div>
+          <div class="address-item">Первомайская, 175 (Алые Хаблы)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Меню -->
+    <section id="offer" class="band">
+      <div class="wrap">
+        <div class="eyebrow">Меню</div>
+        <h2>Что есть</h2>
+        <p class="lead">Классический кофе, авторские напитки и свежая выпечка.</p>
+        <div class="card-grid">
+          <article class="card">
+            <div class="thumb">
+              <img src="1.png" alt="Матча с мороженым" />
+            </div>
+            <h3>Матча и десерты</h3>
+            <p class="desc">Матча-латте, мороженое с матчей и другие авторские напитки.</p>
+          </article>
+          <article class="card">
+            <div class="thumb">
+              <img src="3.png" alt="Выпечка и кофе" />
+            </div>
+            <h3>Кофе и выпечка</h3>
+            <p class="desc">Эспрессо, американо, капучино, свежие круассаны и десерты.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Атмосфера -->
+    <section id="place" class="band band-cream">
+      <div class="wrap">
+        <div class="split-layout">
+          <div class="copy">
+            <div class="eyebrow">Место</div>
+            <h2>Атмосфера</h2>
+            <p class="lead">Тёплый свет, натуральное дерево и много пространства. Здесь приятно провести время за чашкой кофе или в хорошей компании.</p>
+          </div>
+          <div class="photo">
+            <img src="4.png" alt="Интерьер кофейни с логотипом на стене" />
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div>
+        <h4>DON COFFEE</h4>
+        <ul>
+          <li><a href="https://lo.cards/registration/?hash=dkJAlt2uxYrO27NX" target="_blank" rel="noopener">Бонусная карта</a></li>
+          <li><a href="https://instagram.com/don_coffee1" rel="noopener">Instagram</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Меню</h4>
+        <ul>
+          <li><a href="#offer">Кофе</a></li>
+          <li><a href="#offer">Матча</a></li>
+          <li><a href="#offer">Выпечка</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Адреса</h4>
+        <ul>
+          <li><a href="#visit">Доватора, 15</a></li>
+          <li><a href="#visit">Космонавтов, 1026</a></li>
+          <li><a href="#visit">Ленина, 70</a></li>
+          <li><a href="#visit">Умара Алиева, 10</a></li>
+          <li><a href="#visit">Первомайская, 175</a></li>
+        </ul>
+      </div>
+      <div class="legal">
+        © DON COFFEE, 2026.
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
